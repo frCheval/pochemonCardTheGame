@@ -24,13 +24,12 @@ public class StoreTransaction {
 	
 	@OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
-	Integer userId;
-	
+	User user;
+
 	@OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cardId")
-	Integer cardId;
+	Card card;
 
-	
 	Action action;
 	
 	Date timeSt;
