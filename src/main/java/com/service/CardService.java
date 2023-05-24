@@ -1,5 +1,7 @@
 package com.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +25,9 @@ public class CardService {
 	
 	public Card getCard(Integer cardId) {
 		return cardRepository.findById(cardId).orElse(null);
+	}
+	
+	public List<Card> getAllCards() {
+		return cardRepository.findAll();
 	}
 }
