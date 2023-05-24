@@ -34,13 +34,13 @@ public class CardController {
 	}
 	
 	@PutMapping
-	public void editCard(@RequestBody CardDTO cardDto) { 
+	public void editCard(@RequestBody CardDTO cardDto) {
 		cardService.addCard(cardMapper.toCard(cardDto));
 	}
 	
 	@DeleteMapping
-	public String removeCard(Model model) {
-		return "card";
+	public void removeCard(@RequestBody CardDTO cardDto) {
+		cardService.deleteCard(cardMapper.toCard(cardDto));
 	}
 	
 	@PostMapping
