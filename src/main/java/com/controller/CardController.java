@@ -3,7 +3,6 @@ package com.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dto.CardDTO;
-import com.entity.Card;
 import com.mapper.CardMapper;
 import com.service.CardService;
 
@@ -29,8 +27,8 @@ public class CardController {
 	CardMapper cardMapper;
 	
 	@GetMapping("/{id}")
-	public Card getCard(Model model, @PathVariable Integer id) {
-		return cardService.getCard(id);
+	public CardDTO getCard(@PathVariable Integer id) {
+		return cardMapper.toCardDTO(cardService.getCard(id));
 	}
 	
 	@PutMapping
@@ -48,14 +46,14 @@ public class CardController {
 		cardService.addCard(cardMapper.toCard(cardDto));
 	}
 	
-	@PostMapping("/to_sell")
-	public String getAllCardsToSell(Model model) {
-		return "to_sell";
+	@PostMapping("/shop")
+	public List<CardDTO> getAllCardsToSell() {
+		return cardMapper.toCardDTO(cardService.getAllCardsForSale());
 	}
 	
 	@GetMapping("/all")
-	public List<Card> getAllCards() {
-		return cardService.getAllCards();
+	public List<CardDTO> getAllCards() {
+		return cardMapper.toCardDTO(cardService.getAllCards());
 	}
 
 }
