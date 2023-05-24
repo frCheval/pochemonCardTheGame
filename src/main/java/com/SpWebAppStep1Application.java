@@ -27,14 +27,14 @@ public class SpWebAppStep1Application {
 
         Card card = new Card();
         
-        card.setId(1);
+        card.setId(2);
         card.setName("Pochemon");
 
         cardService.addCard(card);
         
         ArrayList<Card> cardList = (ArrayList<Card>) cardService.getAllCards();
         
-        System.out.println(cardList.get(0).getName());
+        System.out.println(cardList.size());
     }
 
 }
