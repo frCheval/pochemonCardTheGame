@@ -1,6 +1,8 @@
 package com.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +10,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Auth {
+
+	@Id
+	@GeneratedValue
+	Integer id;
 
 	String username;
 	

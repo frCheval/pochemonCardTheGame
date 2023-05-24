@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface CardRepository extends CrudRepository<Card, Integer> {
     List<Card> findAll();
-
-    List<Card> findAllToSell();
 }
