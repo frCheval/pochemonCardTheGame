@@ -20,4 +20,12 @@ public class StoreOrder {
     @JoinColumn(name = "cardId")
 	Integer cardId;
 
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "userId")
+	User user;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cardId")
+	Card card;
+
 }
