@@ -20,5 +20,6 @@ public class StoreOrder {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cardId")
 	Card card;
-
+	
+	Float price;
 }

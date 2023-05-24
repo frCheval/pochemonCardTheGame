@@ -21,6 +21,5 @@ public class CardDTO {
     private Integer hp;
     private Integer defense;
     private Integer attack;
-    private Integer price;
     private Integer userId;
 }

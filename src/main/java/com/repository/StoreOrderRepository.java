@@ -8,4 +8,5 @@ import com.entity.StoreOrder;
 
 public interface StoreOrderRepository extends CrudRepository<StoreOrder, Integer> {
     List<StoreOrder> findAll();
+    StoreOrder findByCardId(Integer id);
 }
