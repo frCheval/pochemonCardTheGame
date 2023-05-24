@@ -1,45 +1,51 @@
 package com.controller;
 
+import com.dto.UserDTO;
+import com.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController 
 @RequestMapping("/user")
 public class UserController {
-	
-	@GetMapping
-	public String getUser(Model model) {
-		return "user";
+
+	private final UserService userService;
+
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
+
+	@GetMapping("/{id}")
+	public UserDTO getUser(@PathVariable Integer id) {
+		return userService.getUserById(id);
 	}
 	
 	@PutMapping
-	public String editUser(Model model) {
-		return "user";
+	public void editUser(@RequestBody UserDTO userDto) {
+		userService.addUser(userDto);
 	}
 	
 	@DeleteMapping
-	public String removeUser(Model model) {
-		return "user";
+	public void removeUser(@RequestBody UserDTO userDto) {
+		userService.deleteUser(userDto);
 	}
 	
 	@PostMapping
-	public String addUser(Model model) {
-		return "user";
+	public void addUser(@RequestBody UserDTO userDto) {
+		userService.addUser(userDto);
 	}
 	
 	@PostMapping("/auth")
-	public String authentication(Model model) {
-		return "auth";
+	public Boolean authentication(@RequestAttribute String username, @RequestAttribute String password) {
+		return userService.authenticateUser(username, password);
 	}
 	
 	@GetMapping("/all")
-	public String getAllUsers(Model model) {
-		return "users";
+	public List<UserDTO> getAllUsers() {
+		return userService.getAllUsers();
 	}
 
 }
