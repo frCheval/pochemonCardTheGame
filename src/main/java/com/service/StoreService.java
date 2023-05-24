@@ -29,6 +29,7 @@ public class StoreService {
 	}
 	
 	public void sellCard(StoreOrder storeOrder) {
+		System.out.println(storeOrder.getId());
 		if(storeOrder.getPrice() < 0f) {
 			storeOrder.setPrice(0f);
 		}

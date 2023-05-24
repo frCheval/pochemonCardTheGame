@@ -16,4 +16,5 @@ public class StoreOrderDTO {
 	Integer id;
 	User user;
 	Card card;
+	Float price;
 }
