@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.event.EventListener;
 
 import com.entity.Card;
@@ -14,9 +16,18 @@ import com.entity.User;
 import com.mapper.UserMapper;
 import com.service.CardService;
 import com.service.UserService;
+import org.springframework.core.annotation.Order;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+
+import javax.sql.DataSource;
 
 @SpringBootApplication
 public class SpWebAppStep1Application {
+
+	@Autowired
+	private DataSource dataSource;
 
 	@Autowired
 	CardService cardService;
@@ -30,32 +41,21 @@ public class SpWebAppStep1Application {
 	public static void main(String[] args) {
 		SpringApplication.run(SpWebAppStep1Application.class, args);
 	}
-	
-	@EventListener(ApplicationReadyEvent.class)
-    public void doSomethingAfterStartup() throws InterruptedException, IOException {
-		
-		User user = new User();
-		
-		user.setId(1);
-		user.setAccount(10000f);
-		userService.addUser(userMapper.toUserDTO(user));
-		
-		User user2 = new User();
-		
-		user2.setId(2);
-		user2.setAccount(10000f);
-		userService.addUser(userMapper.toUserDTO(user2));
 
-        Card card = new Card();
-        
-        card.setId(1);
-        card.setName("Pochemon");
+	@Bean
+	@Order(1) // Order to ensure execution sequence
+	@DependsOn("entityManagerFactory") // Dependency on entity manager factory bean
+	public DataSourceInitializer dataSourceInitializer() {
+		DataSourceInitializer initializer = new DataSourceInitializer();
+		initializer.setDataSource(dataSource);
+		initializer.setDatabasePopulator(databasePopulator());
+		return initializer;
+	}
 
-        cardService.addCard(card);
-        
-        ArrayList<Card> cardList = (ArrayList<Card>) cardService.getAllCards();
-        
-        System.out.println(cardList.size());
-    }
+	private ResourceDatabasePopulator databasePopulator() {
+		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+		populator.addScript(new ClassPathResource("data-import.sql")); // Path to your data script
+		return populator;
+	}
 
 }
