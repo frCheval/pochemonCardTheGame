@@ -32,7 +32,8 @@ public class User {
 	
 	String email;
 	
-	List<Integer> cardList;
+	@OneToMany(mappedBy = "user")
+	List<Card> cardList;
 	
 	@OneToMany(mappedBy = "user")
     List<StoreOrder> storeOrder;

@@ -5,6 +5,8 @@ import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,7 +44,9 @@ public class Card {
 	
 	Float attack;
 	
-	Integer userId;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	User user;
 	
 	@OneToMany(mappedBy = "card")
     List<StoreOrder> storeOrder;
