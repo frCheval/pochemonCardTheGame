@@ -10,7 +10,7 @@ import lombok.Setter;
 public class StoreOrder {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
 
 	@ManyToOne

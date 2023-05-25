@@ -56,4 +56,9 @@ public class CardController {
 		return cardMapper.toCardDTO(cardService.getAllCards());
 	}
 
+	@GetMapping("/user/{id}")
+	public List<CardDTO> getAllCardsByUser(@PathVariable Integer id) {
+		return cardMapper.toCardDTO(cardService.getAllCardsByUser(id));
+	}
+
 }

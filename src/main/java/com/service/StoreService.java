@@ -20,6 +20,12 @@ public class StoreService {
 
 	@Autowired
 	StoreTransactionRepository storeTransactionRepository;
+
+	@Autowired
+	CardService cardService;
+
+	@Autowired
+	UserService userService;
 	
 	@Autowired
 	StoreOrderRepository storeOrderRepository;
@@ -36,20 +42,33 @@ public class StoreService {
 	}
 	
 	public boolean buyCard(StoreOrder storeOrder) {
-		User sellerUser = storeOrderRepository.findByCardId(storeOrder.getCard().getId()).getUser();
-		
-		if(storeOrder.getUser().getAccount() < storeOrder.getPrice()) {
-			return false;
+		// Récupération de la carte à acheter
+		StoreOrder storeOrderToBuy = storeOrderRepository.findByCardId(storeOrder.getCard().getId());
+
+		// Utilisateur qui vend et achète la carte
+		User sellerUser = storeOrderToBuy.getUser();
+		User buyerUser = storeOrder.getUser();
+
+		// Si l'utilisateur a assez d'argent pour acheter la carte
+		if(userService.changeMoney(buyerUser, storeOrderToBuy.getPrice() * (-1))) {
+
+			Card cardToSell = storeOrderToBuy.getCard();
+
+			userService.changeMoney(sellerUser, storeOrderToBuy.getPrice());
+
+			// Création des transactions
+			StoreTransaction sellerStoreTransaction = createStoreTransaction(sellerUser,storeOrder.getCard(),Action.SELL);
+			StoreTransaction buyerStoreTransaction = createStoreTransaction(storeOrder.getUser(), cardToSell, Action.BUY);
+
+			cardToSell.setUser(buyerUser);
+			cardService.addCard(cardToSell);
+
+			storeTransactionRepository.save(sellerStoreTransaction);
+			storeTransactionRepository.save(buyerStoreTransaction);
+
+			storeOrderRepository.delete(storeOrderToBuy);
 		}
-		
-		StoreTransaction sellerStoreTransaction = createStoreTransaction(sellerUser,storeOrder.getCard(),Action.SELL);
-		StoreTransaction buyerStoreTransaction = createStoreTransaction(storeOrder.getUser(), storeOrder.getCard(), Action.BUY);
-			
-		storeTransactionRepository.save(sellerStoreTransaction);
-		storeTransactionRepository.save(buyerStoreTransaction);
-			
-		storeOrderRepository.delete(storeOrder);
-		return true;
+		return false;
 		
 	}
 	

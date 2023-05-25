@@ -41,4 +41,8 @@ public class CardService {
 		List<StoreOrder> listStoreOrder = storeOrderRepository.findAll();
 		return listStoreOrder.stream().map(StoreOrder::getCard).collect(Collectors.toList());
 	}
+
+    public List<Card> getAllCardsByUser(Integer id) {
+		return cardRepository.findAllByUserId(id);
+    }
 }

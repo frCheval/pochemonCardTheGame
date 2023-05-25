@@ -3,6 +3,7 @@ package com.service;
 import java.util.List;
 
 import com.dto.UserDTO;
+import com.entity.User;
 import com.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,15 @@ public class UserService {
 
 	public void deleteUser(UserDTO userDto) {
 		userRepository.delete(userMapper.toUser(userDto));
+	}
+
+	public Boolean changeMoney(User user, Float money) {
+		if(user.getAccount() + money < 0f) {
+			return false;
+		}
+ 		user.setAccount(user.getAccount() + money);
+		userRepository.save(user);
+		return true;
 	}
 
 	public Boolean authenticateUser(String username, String password) {
