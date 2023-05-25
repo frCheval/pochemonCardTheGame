@@ -2,8 +2,6 @@ package com.dto;
 
 import java.util.Date;
 
-import com.entity.Card;
-import com.entity.User;
 import com.enums.Action;
 
 import lombok.AllArgsConstructor;
@@ -17,8 +15,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class StoreTransactionDTO {
 	Integer id;
-	User user;
-	Card card;
+	Integer userId;
+	Integer cardId;
 	Action action;
 	Date timeSt;
 }

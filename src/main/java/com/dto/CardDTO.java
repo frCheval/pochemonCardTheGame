@@ -10,16 +10,28 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CardDTO {
-    private String name;
-    private String description;
-    private String family;
-    private String affinity;
-    private String imgUrl;
-    private String smallImgUrl;
-    private Integer id;
-    private Integer energy;
-    private Integer hp;
-    private Integer defense;
-    private Integer attack;
-    private Integer userId;
+	
+	Integer id;
+
+	String name;
+	
+	String description;
+	
+	String family;
+	
+	String affinity;
+	
+	String imgUrl;
+	
+	String smallImgUrl;
+	
+	Float energy;
+	
+	Float hp;
+	
+	Float defence;
+	
+	Float attack;
+	
+	Integer userId;
 }

@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.entity.Card;
-import com.entity.StoreTransaction;
+import com.entity.StoreOrder;
 import com.repository.CardRepository;
-import com.repository.StoreTransactionRepository;
+import com.repository.StoreOrderRepository;
 
 @Service
 public class CardService {
@@ -18,7 +18,7 @@ public class CardService {
 	CardRepository cardRepository;
 	
 	@Autowired
-	StoreTransactionRepository storeTransactionRepository;
+	StoreOrderRepository storeOrderRepository;
 
 	public void addCard(Card card) {	
 		cardRepository.save(card);	
@@ -38,7 +38,7 @@ public class CardService {
 	}
 	
 	public List<Card> getAllCardsForSale() {
-		List<StoreTransaction> listStoreTransaction = storeTransactionRepository.findAll();
-		return listStoreTransaction.stream().map(StoreTransaction::getCard).collect(Collectors.toList());
+		List<StoreOrder> listStoreOrder = storeOrderRepository.findAll();
+		return listStoreOrder.stream().map(StoreOrder::getCard).collect(Collectors.toList());
 	}
 }

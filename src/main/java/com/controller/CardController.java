@@ -46,7 +46,7 @@ public class CardController {
 		cardService.addCard(cardMapper.toCard(cardDto));
 	}
 	
-	@PostMapping("/shop")
+	@GetMapping("/shop")
 	public List<CardDTO> getAllCardsToSell() {
 		return cardMapper.toCardDTO(cardService.getAllCardsForSale());
 	}

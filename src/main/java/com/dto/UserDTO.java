@@ -19,5 +19,5 @@ public class UserDTO {
     private String lastName;
     private String firstName;
     private String email;
-    private List<CardDTO> cardLiss;
+    private List<Integer> cardList;
 }

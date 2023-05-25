@@ -13,12 +13,12 @@ public class StoreOrder {
 	@GeneratedValue
 	Integer id;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "userId")
+	@ManyToOne
+	@JoinColumn(name = "user_id")
 	User user;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cardId")
+	@ManyToOne
+	@JoinColumn(name = "card_id")
 	Card card;
 	
 	Float price;
