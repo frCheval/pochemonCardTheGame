@@ -1,0 +1,134 @@
+<div class="container-fluid h-100">
+    <!-- w-75 -->
+
+    <p class="title-input"> </p> 
+
+    <div id="">
+
+            <!-- Section Selection informations liées ? -->
+            <section class="col-lg border border-dark w-100 h-100 m-3 p-3">
+
+                <!-- Caserne Form / getFormCaserne -->
+                <form #formData="ngForm" (ngSubmit)="getFormData(formData)" >
+                    <div class="p-1">
+
+                        <fieldset class="border p-3">
+
+                            <legend class="float-none w-auto p-2"> Ajouter un Card. </legend>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control" name="nomCas" ngModel placeholder=" Nom caserne">
+                                </div>
+
+                                <div class="col">
+                                    <input type="text" class="form-control" name="villeCas" ngModel placeholder="Ville caserne">
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <input type="text" class="form-control" name="adresseCas" ngModel placeholder=" Adresse caserne">
+                                </div>
+
+                                <div class="col">
+                                    <input type="text" class="form-control" name="coordsCas" ngModel placeholder="Coords gps">
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <select class="form-control" type="text" name="capaciteCas" ngModel ngModel id="plateformeFormControlSelect"
+                                        name="capacite">
+                                        <option selected>Sélectionner la capacité de la caserne</option>
+                                        <option>10</option>
+                                        <option>40</option>
+                                        <option>70</option>
+                                        <option>100</option>
+                                    </select>
+                                </div>
+                            </div>  
+
+                        </fieldset>
+
+                        <fieldset class="border p-3">
+
+                            <legend class="float-none w-auto p-2"> Ajouter un pompier. </legend>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control" name="nomPom" ngModel placeholder=" Nom pompier">
+                                </div>
+
+                                <div class="col">
+                                    <input type="text" class="form-control" name="prenomPom" ngModel placeholder="Prénom du pompier">
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <input type="text" class="form-control" name="agePom" ngModel placeholder=" Age du pompier">
+                                </div>
+
+                                <div class="col">
+                                    <input type="text" class="form-control" name="rolePom" ngModel placeholder="Role du pompier">
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                      
+
+                        <fieldset class="border p-3">
+
+                            <legend class="float-none w-auto p-2"> Ajouter un camion. </legend>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control" name="typeCam" ngModel placeholder=" Type du camion">
+                                </div>
+
+                                <div class="col">
+                                    <input type="text" class="form-control" name="imatricuCam" ngModel placeholder="Imatriculation du camion">
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <select class="form-control" type="text" ngModel id="plateformeFormControlSelect"
+                                        name="capaciteCam">
+                                        <option selected>Sélectionner la capacité du camion</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            
+
+                        </fieldset>
+
+                        <!-- Section Boutons Ajouter et Réinitialiser -->
+                        <div class="row mt-5">
+                            <div class="col text-center">
+                                <button name="submit" class="btn btn-primary submit" type="submit" title="double-cliquer"
+                                    style="background-color: black;">
+                                    Ajouter camion
+                                </button>
+                            </div>
+
+                            <div class="col text-center">
+                                <!-- (click)="reset()"  -->
+                                <button name="submit" class="btn btn-primary cancel" type="reset"
+                                    style="background-color: black;">
+                                    Réinitialiser
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </section>
+
+    </div>
+
+</div>
