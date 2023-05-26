@@ -1,2 +1,0 @@
-# pochemonCardTheGame
-PochemonCard - The Game
