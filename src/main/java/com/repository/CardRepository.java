@@ -1,11 +1,12 @@
 package com.repository;
 
-import com.entity.Card;
-import org.springframework.data.repository.CrudRepository;
-
 import java.util.List;
 
-public interface CardRepository extends CrudRepository<Card, Integer> {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.entity.Card;
+
+public interface CardRepository extends JpaRepository<Card, Integer> {
     List<Card> findAll();
 
     List<Card> findAllByUserId(Integer id);

@@ -2,10 +2,10 @@ package com.repository;
 
 import java.util.List;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.entity.StoreTransaction;
 
-public interface StoreTransactionRepository extends CrudRepository<StoreTransaction, Integer> {
+public interface StoreTransactionRepository extends JpaRepository<StoreTransaction, Integer> {
     List<StoreTransaction> findAll();
 }
