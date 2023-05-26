@@ -27,12 +27,20 @@ public class UserService {
 		return userMapper.toUserDTOList(userRepository.findAll());
 	}
 
-	public void addUser(UserDTO userDto) {
-		userRepository.save(userMapper.toUser(userDto));
+	public Boolean addUser(UserDTO userDto) {
+		if (userDto != null) {
+			userRepository.save(userMapper.toUser(userDto));
+			return true;
+		}
+		return false;
 	}
 
-	public void deleteUser(UserDTO userDto) {
-		userRepository.delete(userMapper.toUser(userDto));
+	public Boolean deleteUser(UserDTO userDto) {
+		if (userDto != null) {
+			userRepository.delete(userMapper.toUser(userDto));
+			return true;
+		}
+		return false;
 	}
 
 	public Boolean changeMoney(User user, Float money) {

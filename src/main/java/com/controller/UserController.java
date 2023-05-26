@@ -31,18 +31,18 @@ public class UserController {
 	}
 	
 	@PutMapping
-	public void editUser(@RequestBody UserDTO userDto) {
-		userService.addUser(userDto);
+	public Boolean editUser(@RequestBody UserDTO userDto) {
+		return userService.addUser(userDto);
 	}
 	
 	@DeleteMapping
-	public void removeUser(@RequestBody UserDTO userDto) {
-		userService.deleteUser(userDto);
+	public Boolean removeUser(@RequestBody UserDTO userDto) {
+		return userService.deleteUser(userDto);
 	}
 	
 	@PostMapping
-	public void addUser(@RequestBody UserDTO userDto) {
-		userService.addUser(userDto);
+	public Boolean addUser(@RequestBody UserDTO userDto) {
+		return userService.addUser(userDto);
 	}
 	
 	@PostMapping("/auth")
