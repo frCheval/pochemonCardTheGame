@@ -32,18 +32,18 @@ public class CardController {
 	}
 	
 	@PutMapping
-	public void editCard(@RequestBody CardDTO cardDto) {
-		cardService.addCard(cardMapper.toCard(cardDto));
+	public Boolean editCard(@RequestBody CardDTO cardDto) {
+		return cardService.addCard(cardMapper.toCard(cardDto));
 	}
 	
 	@DeleteMapping
-	public void removeCard(@RequestBody CardDTO cardDto) {
-		cardService.deleteCard(cardMapper.toCard(cardDto));
+	public Boolean removeCard(@RequestBody CardDTO cardDto) {
+		return cardService.deleteCard(cardMapper.toCard(cardDto));
 	}
 	
 	@PostMapping
-	public void addCard(@RequestBody CardDTO cardDto) {
-		cardService.addCard(cardMapper.toCard(cardDto));
+	public Boolean addCard(@RequestBody CardDTO cardDto) {
+		return cardService.addCard(cardMapper.toCard(cardDto));
 	}
 	
 	@GetMapping("/shop")

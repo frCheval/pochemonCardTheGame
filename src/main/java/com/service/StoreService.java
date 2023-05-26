@@ -34,14 +34,15 @@ public class StoreService {
 		return storeTransactionRepository.findAll();
 	}
 	
-	public void sellCard(StoreOrder storeOrder) {
+	public Boolean sellCard(StoreOrder storeOrder) {
 		if(storeOrder.getPrice() < 0f) {
-			storeOrder.setPrice(0f);
+			return false;
 		}
 		storeOrderRepository.save(storeOrder);
+		return true;
 	}
 	
-	public boolean buyCard(StoreOrder storeOrder) {
+	public Boolean buyCard(StoreOrder storeOrder) {
 		// Récupération de la carte à acheter
 		StoreOrder storeOrderToBuy = storeOrderRepository.findByCardId(storeOrder.getCard().getId());
 

@@ -29,8 +29,8 @@ public class StoreController {
 	StoreTransactionMapper storeTransactionMapper;
 	
 	@PostMapping("/sell")
-	public void sellCard(@RequestBody StoreOrderDTO storeOrderDTO) {
-		storeService.sellCard(storeOrderMapper.toStoreOrder(storeOrderDTO));
+	public Boolean sellCard(@RequestBody StoreOrderDTO storeOrderDTO) {
+		return storeService.sellCard(storeOrderMapper.toStoreOrder(storeOrderDTO));
 	}
 	
 	@PostMapping("/buy")

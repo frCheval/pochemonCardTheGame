@@ -20,13 +20,21 @@ public class CardService {
 	@Autowired
 	StoreOrderRepository storeOrderRepository;
 
-	public void addCard(Card card) {	
-		cardRepository.save(card);	
+	public Boolean addCard(Card card) {	
+		if (card != null) {
+			cardRepository.save(card);
+			return true;
+		}
+		return false;
 	}
 	
 	
-	public void deleteCard(Card card) {
-		cardRepository.delete(card);
+	public Boolean deleteCard(Card card) {
+		if (card != null) {
+			cardRepository.delete(card);
+			return true;
+		}
+		return false;
 	}
 	
 	public Card getCard(Integer cardId) {
@@ -45,4 +53,5 @@ public class CardService {
     public List<Card> getAllCardsByUser(Integer id) {
 		return cardRepository.findAllByUserId(id);
     }
+    
 }
