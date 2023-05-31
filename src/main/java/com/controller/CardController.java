@@ -2,6 +2,7 @@ package com.controller;
 
 import java.util.List;
 
+import com.entity.Card;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,12 +36,28 @@ public class CardController {
 	
 	@PutMapping
 	public Boolean editCard(@RequestBody CardDTO cardDto) {
-		return cardService.addCard(cardMapper.toCard(cardDto));
+
+		Card card = cardService.getCard(cardDto.getId());
+
+		card.setName(cardDto.getName());
+		card.setDescription(cardDto.getDescription());
+		card.setFamily(cardDto.getFamily());
+		card.setAffinity(cardDto.getAffinity());
+		card.setImgUrl(cardDto.getImgUrl());
+		card.setSmallImgUrl(cardDto.getSmallImgUrl());
+		card.setEnergy(cardDto.getEnergy());
+		card.setHp(cardDto.getHp());
+		card.setDefence(cardDto.getDefence());
+		card.setAttack(cardDto.getAttack());
+
+		return cardService.addCard(card);
+
+		// return cardService.addCard(cardMapper.toCard(cardDto));
 	}
 	
-	@DeleteMapping
-	public Boolean removeCard(@RequestBody CardDTO cardDto) {
-		return cardService.deleteCard(cardMapper.toCard(cardDto));
+	@DeleteMapping("/{id}")
+	public Boolean removeCard(@PathVariable Integer id) {
+		return cardService.deleteCard(id);
 	}
 	
 	@PostMapping
