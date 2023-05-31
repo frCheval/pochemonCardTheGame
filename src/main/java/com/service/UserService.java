@@ -27,12 +27,12 @@ public class UserService {
 		return userMapper.toUserDTOList(userRepository.findAll());
 	}
 
-	public Boolean addUser(UserDTO userDto) {
+	public UserDTO addUser(UserDTO userDto) {
 		if (userDto != null) {
 			userRepository.save(userMapper.toUser(userDto));
-			return true;
+			return userDto;
 		}
-		return false;
+		return null;
 	}
 
 	public Boolean deleteUser(UserDTO userDto) {
@@ -52,7 +52,12 @@ public class UserService {
 		return true;
 	}
 
-	public Boolean authenticateUser(String username, String password) {
-		return userRepository.existsByLoginAndPwd(username, password);
+	public UserDTO authenticateUser(String username, String password) {
+		if (userRepository.existsByLoginAndPwd(username, password)){
+			return userMapper.toUserDTO(userRepository.findByLoginAndPwd(username, password));
+		}
+		else {
+			return null;
+		}
 	}
 }

@@ -33,7 +33,7 @@ public class UserController {
 	}
 	
 	@PutMapping
-	public Boolean editUser(@RequestBody UserDTO userDto) {
+	public UserDTO editUser(@RequestBody UserDTO userDto) {
 		return userService.addUser(userDto);
 	}
 	
@@ -43,15 +43,16 @@ public class UserController {
 	}
 	
 	@PostMapping
-	public Boolean addUser(@RequestBody UserDTO userDto) {
+	public UserDTO addUser(@RequestBody UserDTO userDto) {
 		return userService.addUser(userDto);
 	}
-	
-	@PostMapping("/auth")
-	public Boolean authentication(@RequestAttribute String username, @RequestAttribute String password) {
+
+	@GetMapping("/auth/{username}/{password}")
+	public UserDTO authentication(@PathVariable String username, @PathVariable String password) {
 		return userService.authenticateUser(username, password);
 	}
-	
+
+
 	@GetMapping("/all")
 	public List<UserDTO> getAllUsers() {
 		return userService.getAllUsers();
