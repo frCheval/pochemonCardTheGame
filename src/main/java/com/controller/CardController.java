@@ -19,7 +19,7 @@ import com.mapper.CardMapper;
 import com.service.CardService;
 
 @RestController
-@RequestMapping("/card")
+@RequestMapping("/cards")
 @CrossOrigin
 public class CardController {
 	
@@ -70,7 +70,7 @@ public class CardController {
 		return cardMapper.toCardDTO(cardService.getAllCardsForSale());
 	}
 	
-	@GetMapping("/all")
+	@GetMapping
 	public List<CardDTO> getAllCards() {
 		return cardMapper.toCardDTO(cardService.getAllCards());
 	}
@@ -78,6 +78,11 @@ public class CardController {
 	@GetMapping("/user/{id}")
 	public List<CardDTO> getAllCardsByUser(@PathVariable Integer id) {
 		return cardMapper.toCardDTO(cardService.getAllCardsByUser(id));
+	}
+
+	@GetMapping("/allSelling")
+	public List<CardDTO> getAllCardsSelling() {
+		return cardMapper.toCardDTO(cardService.getAllCardsForSale());
 	}
 
 }

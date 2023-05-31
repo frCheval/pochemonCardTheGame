@@ -17,7 +17,7 @@ import com.dto.UserDTO;
 import com.service.UserService;
 
 @RestController 
-@RequestMapping("/user")
+@RequestMapping("/users")
 @CrossOrigin
 public class UserController {
 

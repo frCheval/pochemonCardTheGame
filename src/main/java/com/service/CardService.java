@@ -53,5 +53,7 @@ public class CardService {
     public List<Card> getAllCardsByUser(Integer id) {
 		return cardRepository.findAllByUserId(id);
     }
+
+
     
 }
